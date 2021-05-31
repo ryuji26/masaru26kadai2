@@ -20,26 +20,26 @@ class ViewController: UIViewController {
         let number1 = Int(textField1.text ?? "") ?? 0
         let number2 = Int(textField2.text ?? "") ?? 0
 
+        let resultText: String
+
         //計算してlabelに表示
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            let result = number1 + number2
-            label.text = "\(result)"
+            resultText = String(number1 + number2)
         case 1:
-            let result = number1 - number2
-            label.text = "\(result)"
+            resultText = String(number1 - number2)
         case 2:
-            let result = number1 * number2
-            label.text = "\(result)"
+            resultText = String(number1 * number2)
         case 3:
-            guard number2 != 0 else {
-                label.text = "割る数には0以外を入力してください"
-                return
+            if number2 == 0 {
+                resultText = "割る数には0以外を入力してください"
+            } else {
+                resultText = String(number1 / number2)
             }
-            let result = number1 / number2
-            label.text = "\(result)"
         default:
             return
         }
+
+        label.text = resultText
     }
 }
